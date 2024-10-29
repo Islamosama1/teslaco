@@ -23,7 +23,7 @@ const Home = () => {
       <NextSeo
         title="Kytelink - Simple & Free Link-In-Bio"
         description="Kytelink is an opensource Linktree alternative that allows you to share all your links in one place. Add custom domains, view click statistics and more."
-        canonical="https://kytelink.com"
+        canonical="https://kytelink-amber.vercel.app"
       />
 
       <VStack

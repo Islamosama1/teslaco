@@ -11,14 +11,14 @@ async function middleware(request: NextRequest) {
 
   // get host name [aleem.com]
   const hostname = request.headers.get('host')
-  if (!hostname) return NextResponse.redirect('https://kytelink.com')
+  if (!hostname) return NextResponse.redirect('https://kytelink-amber.vercel.app')
 
-  // get our base url [https://kytelink.com]
+  // get our base url [https://kytelink-amber.vercel.app]
   const BASE_URL = getBaseURL(hostname)
 
   // if the domain is a customdomain, and it's root path, redirect to kytelink.com
   if (CUSTOM_DOMAINS.includes(hostname) && pathname === '/') {
-    return NextResponse.redirect('https://kytelink.com')
+    return NextResponse.redirect('https://kytelink-amber.vercel.app')
   }
 
   // if the domain is a host, treat it as normal
@@ -46,7 +46,7 @@ async function middleware(request: NextRequest) {
     if (!user.success || !user.username) {
       console.log('no user found')
       console.log(user)
-      return NextResponse.redirect('https://kytelink.com')
+      return NextResponse.redirect('https://kytelink-amber.vercel.app')
     }
 
     url.pathname = `/${user.username}`

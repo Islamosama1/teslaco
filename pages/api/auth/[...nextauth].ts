@@ -23,20 +23,15 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
     EmailProvider({
-      // here you have two options: use an http api or setup an smpt server
-      // if you want all dependencies opensource, smpt will be eaiser
-      // otherwise customize what ya want in /controllers/emails.ts
-      // questions? feel free to dm me on twitter @aleemrehmtulla
-
-      // server: {
-      //   host: process.env.SMTP_HOST,
-      //   port: process.env.SMTP_PORT,
-      //   auth: {
-      //     user: process.env.SMTP_USER,
-      //     pass: process.env.SMTP_PASSWORD,
-      //   },
-      // },
-      // from: process.env.SMTP_FROM,
+      server: {
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
+        },
+      },
+      from: process.env.SMTP_FROM,
 
       sendVerificationRequest: async ({ url, identifier: email }) => {
         return await sendMagicLink(email, url)

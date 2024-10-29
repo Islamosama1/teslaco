@@ -6,7 +6,7 @@ a simple, free, and opensource alternative to Linktree.
 
 #### Kyte Hosted
 
-- Head to [kytelink.com](https://kytelink.com)
+- Head to [kytelink.com](https://kytelink-amber.vercel.app)
 - Hit the `Get Started` button
 - Sign up with Github, Google, or Email
 - Follow the onboarding steps to create your first link

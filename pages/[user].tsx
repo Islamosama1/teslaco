@@ -13,7 +13,7 @@ const Kyte = (user: TUser) => {
       <NextSeo
         title={user.seoTitle || `${user.name || user.username} | Kytelink`}
         description={user.seoDescription || `Check out ${user.name}'s kyte to grab their links!`}
-        canonical={`https://kytelink.com/${user.username}`}
+        canonical={`https://kytelink-amber.vercel.app/${user.username}`}
       />
       <User user={user} />
     </>

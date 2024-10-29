@@ -1,4 +1,5 @@
 export const HOSTS = [
+  'kytelink-amber.vercel.app',
   'kytelink.com',
   'www.kytelink.com',
   'staging.kytelink.com',
