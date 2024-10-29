@@ -60,7 +60,9 @@ function html(params: { link: string }) {
             <td align="center" style="border-radius: 5px;" bgcolor="${color.buttonBackground}"><a href="${link}"
                 target="_blank"
                 style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${color.buttonText}; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${color.buttonBorder}; display: inline-block; font-weight: bold;">Sign
-                in</a></td>
+                in</a>
+                ${link}
+                </td>
           </tr>
         </table>
       </td>
