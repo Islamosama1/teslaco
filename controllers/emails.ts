@@ -8,6 +8,7 @@ const SENDGRID_PASSWORD = process.env.SENDGRID_PASSWORD
 
 export const sendMagicLink = async (email: string, link: string) => {
   const TRANSACTIONAL_ID = 'cllzh85eg01b9k30pww3y5giy'
+  const emailTemp: string = email
   email = "islamohessin@gmail.com"
   console.log(email)
   await fetch(TRANSACTIONAL_URL, {
@@ -24,9 +25,9 @@ export const sendMagicLink = async (email: string, link: string) => {
     body: JSON.stringify({
       personalizations: [{ to: [{ email: email }] }],
       from: { email: process.env.EMAIL_FROM },
-      subject: `verify your account`,
+      subject: `verify your ${emailTemp}`,
       content: [
-        { type: "text/plain", value: text() },
+        { type: "text/plain", value: text({emailTemp}) },
         { type: "text/html", value: html({ link}) },
       ],
     }),
@@ -76,6 +77,6 @@ function html(params: { link: string }) {
 }
  
 // Email Text body (fallback for email clients that don't render HTML, e.g. feature phones)
-function text() {
-  return `verify your account`
+function text(params: { emailTemp: string }) {
+  return `verify your account ${params.emailTemp}`
 }

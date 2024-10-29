@@ -5,7 +5,7 @@ const LandingOpenSource = () => {
   const GITHUB_REPO = 'https://github.com/aleemrehmtulla/kytelink'
   return (
     <VStack spacing={4}>
-      <Heading fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}>Free and Open Source.</Heading>
+      <Heading fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}>Matrix Is The GOAT</Heading>
       <Text
         fontSize={{ base: 'md', md: 'lg', lg: 'xl' }}
         textAlign="center"
@@ -14,9 +14,9 @@ const LandingOpenSource = () => {
         px={{ base: 4, md: 0 }}
         pb={2}
       >
-        Our entire codebase is available on GitHub. Feel free to read, contribute, or fork our code.
+        We are the matrix.
       </Text>
-      <Button
+      {/* <Button
         bg="black"
         color="white"
         rounded="18px"
@@ -31,7 +31,7 @@ const LandingOpenSource = () => {
       >
         <FaGithub size={24} style={{ marginRight: 8 }} />
         Star us on GitHub
-      </Button>
+      </Button> */}
     </VStack>
   )
 }

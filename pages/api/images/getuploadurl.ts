@@ -20,28 +20,63 @@ export const config = {
   },
 };
 
-// Next.js API route handler
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Use Multer to parse the incoming request
-  upload.single('file')(req, res, async (err) => {
-    if (err) {
+// Middleware wrapper to make Multer compatible with Next.js API routes
+const multerMiddleware = (req: NextApiRequest, res: NextApiResponse, next: (err?: any) => void) => {
+  upload.single('file')(req as any, res as any, next);
+};
+
+// Wrapper for handling middleware as a promise
+const runMiddleware = (req: NextApiRequest, res: NextApiResponse) =>
+  new Promise((resolve, reject) => {
+    multerMiddleware(req, res, (result: unknown) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+
+  export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      await runMiddleware(req, res);
+  
+      const file = (req as any).file;
+      if (!file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+  
+      try {
+        const cloudinaryUrl = await uploadImageToCloudinary(file);
+        return res.status(200).json({ secure_url: cloudinaryUrl });
+      } catch (uploadError : any) {
+        return res.status(500).json({ error: uploadError.message });
+      }
+    } catch (error) {
       return res.status(500).json({ error: 'Failed to upload file' });
     }
+  }
+// // Next.js API route handler
+// export default function handler(req: NextApiRequest, res: NextApiResponse) {
+//   // Use Multer to parse the incoming request
+//   upload.single('file')(req, res, async (err) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Failed to upload file' });
+//     }
 
-    // Check if the file exists
-    const file = req.file;  // Correctly access the uploaded file here
-    if (!file) {
-      return res.status(400).json({ error: 'No file uploaded' });
-    }
+//     // Check if the file exists
+//     const file = req.file;  // Correctly access the uploaded file here
+//     if (!file) {
+//       return res.status(400).json({ error: 'No file uploaded' });
+//     }
 
-    try {
-      const cloudinaryUrl = await uploadImageToCloudinary(file);
-      return res.status(200).json({ secure_url: cloudinaryUrl });
-    } catch (uploadError) {
-      return res.status(500).json({ error: uploadError.message });
-    }
-  });
-}
+//     try {
+//       const cloudinaryUrl = await uploadImageToCloudinary(file);
+//       return res.status(200).json({ secure_url: cloudinaryUrl });
+//     } catch (uploadError) {
+//       return res.status(500).json({ error: uploadError.message });
+//     }
+//   });
+// }
 
 // Upload image to Cloudinary
 async function uploadImageToCloudinary(file: Express.Multer.File): Promise<string> {
