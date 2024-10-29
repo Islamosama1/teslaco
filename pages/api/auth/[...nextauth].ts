@@ -63,6 +63,7 @@ export const authOptions: NextAuthOptions = {
           },
         })
 
+        console.log('exisitngAccount', exisitngAccount)
         if (exisitngAccount) return true
 
         await prisma.account.create({
