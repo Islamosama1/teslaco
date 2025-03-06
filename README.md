@@ -1,5 +1,3 @@
-# Kytelink 🪁
-
 a simple, free, and opensource alternative to Linktree.
 
 #### Self Hosted
