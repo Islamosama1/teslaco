@@ -1,4 +1,4 @@
-- Clone aand run `npm install`
+- Clone and run `npm install`
 - Follow the `.env.example` file to create your own `.env` file
 - Set up your database by running `npx prisma migrate dev --name init` and `npx prisma generate`
 - Run `npm run dev` to start the development server
