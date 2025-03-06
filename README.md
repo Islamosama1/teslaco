@@ -1,7 +1,3 @@
-a simple, free, and opensource alternative to Linktree.
-
-#### Self Hosted
-
 - Clone aand run `npm install`
 - Follow the `.env.example` file to create your own `.env` file
 - Set up your database by running `npx prisma migrate dev --name init` and `npx prisma generate`
